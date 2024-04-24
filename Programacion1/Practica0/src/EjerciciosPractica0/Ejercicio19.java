@@ -55,5 +55,4 @@ public class Ejercicio19 {
 			System.out.print("La palabra es alfabética.");
 		}
 	}
-
 }
