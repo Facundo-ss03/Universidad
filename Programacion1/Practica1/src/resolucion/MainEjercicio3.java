@@ -4,8 +4,8 @@ public class MainEjercicio3 {
 
 	public static void main(String[] args) {
 
-		Circulo c1 = new Circulo(0, 3, 1);
-		Circulo c2 = new Circulo(-2, 0, 1);
+		Circulo c1 = new Circulo(-4, 0, 1);
+		Circulo c2 = new Circulo(3, 0, 1);
 		
 		c1.imprimir();
 		c2.imprimir();
@@ -51,6 +51,7 @@ entre ellos es cero.
 
 g) Escribir el m´etodo de clase static boolean seTocan(Circulo c1, Circulo c2) que devuelva verdadero si las 
 ´areas de los c´ırculos pasados como par´ametro se solapan y falso si no.
+
 h) Escribir el m´etodo de instancia boolean loContiene(Circulo otro) que devuelva verdadero si toda
 la superficie del c´ırculo pasado como par´ametro est´a contenida en la superficie del argumento
 impl´ıcito y falso en caso contrario.1
