@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module Matrices {
-	requires junit;
-}
