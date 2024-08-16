@@ -9,31 +9,29 @@ public class Acumuladores {
 	    boolean resultado = !matrizVacia && !numeroNoPositivo;
 
 		if(resultado == true) {
+			
+			resultado = false;
 		    for(int fila = 0; fila < mat.length; fila++) {
-				boolean filaMultiplo = true;
+		    	
+				boolean filaMultiplo = tieneFilaMultiplo(mat[fila], num);
 				
-				filaMultiplo = iterarColumnas(mat[fila], filaMultiplo, num);
-				/*
-				for(int col = 0; col < mat[0].length; col++) {
-	
-					filaMultiplo = filaMultiplo && esMultiplo(mat[fila][col], num);
-	
-				}
-				*/
-				resultado = !resultado && !filaMultiplo;
+				resultado = resultado || filaMultiplo;
 				
 			}
 		}
 		return resultado;
 	}
 	
-	private boolean iterarColumnas(int[] fila, boolean mul, int num) {
+	private boolean tieneFilaMultiplo(int[] fila, int num) {
+		
+		boolean filaMultiplo = true;
+		
 		for(int col = 0; col < fila.length; col++) {
 			
-			mul = mul && esMultiplo(fila[col], num);
+			filaMultiplo = filaMultiplo && esMultiplo(fila[col], num);
 
 		}
-		return mul;
+		return filaMultiplo;
 	}
 	
 	private boolean esMultiplo(int a, int b) {
@@ -43,5 +41,86 @@ public class Acumuladores {
 		else {
 			return false;
 		}
+	}
+
+	public boolean hayInterseccionPorFila(int[][] mat1, int[][] mat2) {
+		
+		boolean res = true;
+
+		if(mat1.length != mat2.length) {
+			res = false;
+		}
+		if(mat1.length == 0 || mat2.length == 0) {
+			res = false;
+		}
+		if(mat1 == null || mat2 == null) {
+			res = false;
+		}
+		
+		if(res == true) {
+
+			for(int fila = 0; fila < mat1.length; fila++) {
+
+				res = res && tieneInterseccion(mat1[fila], mat2[fila]);
+				
+			}
+			
+		}
+		
+		return res;
+	}
+	
+	private boolean tieneInterseccion(int[] mat1, int[] mat2) {
+		boolean hayCompartidos = false;
+
+			for(int col = 0; col < mat1.length; col++) {
+				
+				hayCompartidos = hayCompartidos || contiene(mat1[col], mat2);
+				
+			}
+			
+		return hayCompartidos;
+		
+	}
+	
+	private boolean contiene(int a, int[] b) {
+		
+		for(int valores = 0; valores < b.length; valores++) {
+			if(a == b[valores]) return true;
+		}
+		
+		return false;
+	}
+
+	public boolean algunaFilaSumaMasQueLaColumna(int[][] mat, int nColum) {
+		boolean res = false;
+		
+		if(mat.length == 0 || nColum >= mat[0].length || nColum < 0) return false;
+
+		int sumaDeColumna = sumarColumna(mat, nColum);
+		int sumaTotal = 0;
+		
+		for(int fila = 0; fila < mat.length; fila++) {
+			for(int col = 0; col < mat[fila].length; col++) {
+
+				sumaTotal += mat[fila][col];
+				
+			}
+			res = res || (sumaTotal > sumaDeColumna);
+			sumaTotal = 0;
+		}
+		
+		return res;
+	}
+	
+	private int sumarColumna(int[][] mat, int nColum) {
+
+		int acu = 0;
+		for(int fila = 0; fila < mat.length; fila++) {
+			
+			acu += mat[fila][nColum];
+			
+		}
+		return acu;
 	}
 }

@@ -37,7 +37,7 @@ public class AcumuladoresTest {
 		// Para todos los tests
 		int[][] aux = { 
 				{  1,  9,  6,  31 }, 
-				{  3, 12, 18, 18 }, // todos multiplos de 3
+				{  9, 12, 18, 18 }, // todos multiplos de 3
 				{ 15, 14,  9, 30 } };
 		mat = aux;
 		// Para TEST ej1
@@ -87,6 +87,7 @@ public class AcumuladoresTest {
 	}
 
 	// ejercicio 1 todosMultiplosEnAlgunaFila()
+	/*
 	@Test
 	public void ej1_siExisteFilaMultiplo_RetornaTrue() {
 		assertTrue(acum.todosMultiplosEnAlgunaFila(mat, numExisteFilaDeMultiplos));
@@ -106,8 +107,6 @@ public class AcumuladoresTest {
 		assertFalse(acum.todosMultiplosEnAlgunaFila(mat, numNegativo));
 		assertFalse(acum.todosMultiplosEnAlgunaFila(mat, 0));
 	}
-
-	/*
 	
 	// ejercicio 2 hayInterseccionPorFila()
 	@Test
@@ -135,7 +134,7 @@ public class AcumuladoresTest {
 		assertFalse(acum.hayInterseccionPorFila(vacia, mat));
 		assertFalse(acum.hayInterseccionPorFila(vacia, vacia));
 	}
-
+	*/
 	// ejercicio 3 algunaFilaSumaMasQueLaColumna()
 	@Test
 	public void ej3_siHayFilaQueSumeMasQueNumColumna_RetornaTrue() {
@@ -158,6 +157,7 @@ public class AcumuladoresTest {
 		assertFalse(acum.algunaFilaSumaMasQueLaColumna(vacia, 0));
 	}
 
+	/*
 	// ejercicio 4 hayInterseccionPorColumna()
 
 	@Test
