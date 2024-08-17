@@ -61,7 +61,7 @@ public class Acumuladores {
 
 			for(int fila = 0; fila < mat1.length; fila++) {
 
-				res = res && tieneInterseccion(mat1[fila], mat2[fila]);
+				res = res && tieneIntersecciones(mat1[fila], mat2[fila]);
 				
 			}
 			
@@ -70,7 +70,7 @@ public class Acumuladores {
 		return res;
 	}
 	
-	private boolean tieneInterseccion(int[] mat1, int[] mat2) {
+	private boolean tieneIntersecciones(int[] mat1, int[] mat2) {
 		boolean hayCompartidos = false;
 
 			for(int col = 0; col < mat1.length; col++) {
@@ -123,4 +123,73 @@ public class Acumuladores {
 		}
 		return acu;
 	}
+
+	public boolean hayInterseccionPorColumna(int[][] mat1, int[][]mat2) {
+		
+		if(mat1 == null || mat2 == null) {
+			return false;
+		}
+		if(mat1.length == 0 || mat2.length == 0) {
+			return false;
+		}
+		if(mat1[0].length != mat2[0].length) {
+			return false;
+		}
+		
+		if(mat1 == mat2) return true;
+		
+		//Que dado 2 matrices se verifica si hay intersección entre las columnas de cada matriz, columna a
+		//columna.
+		
+		//int[][] aux = { 
+		//{  1,  9,  6,  31 }, 
+		//{  9, 12, 18, 18 }, // todos multiplos de 3
+		//{ 15, 14,  9, 30 } };
+
+
+		//int[][] aux5 = { 
+		//		{  9,  1,  2,  6 }, 
+		//		{ 12, 15, 19, 18 }, 
+		//		{ 14,  9, 18,  9 }, 
+		//		{ 21, 22, 23, 24 } };
+		//matConInterseccionPorColumna = aux5;
+
+		//int filas = 0;
+		//if(mat1.length > mat2.length) {
+		//	filas = mat1.length;
+		//}
+		
+		boolean res = true;
+		boolean colInterseccion = false;
+		
+		for(int col = 0; col < mat1[0].length; col++) {
+				
+			int[] columna1 = obtenerColumna(col, mat1);
+			int[] columna2 = obtenerColumna(col, mat2);
+			
+			for(int i = 0; i < columna1.length; i++) {
+					
+				colInterseccion = colInterseccion || contiene(columna1[i], columna2);
+				System.out.print(i + " " + colInterseccion);
+					
+			}
+			res = res && colInterseccion;
+
+		}
+				
+		return res;
+	}
+	
+	private int[] obtenerColumna(int col, int[][] mat) {
+		
+		int[] columna = new int[mat.length];
+		for(int fila = 0; fila < mat.length; fila++) {
+			
+			columna[fila] = mat[fila][col]; 
+			System.out.println(columna[fila]);
+		}
+		
+		return columna;
+	}
+	
 }

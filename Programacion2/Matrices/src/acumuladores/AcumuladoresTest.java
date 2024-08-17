@@ -87,7 +87,6 @@ public class AcumuladoresTest {
 	}
 
 	// ejercicio 1 todosMultiplosEnAlgunaFila()
-	/*
 	@Test
 	public void ej1_siExisteFilaMultiplo_RetornaTrue() {
 		assertTrue(acum.todosMultiplosEnAlgunaFila(mat, numExisteFilaDeMultiplos));
@@ -134,7 +133,6 @@ public class AcumuladoresTest {
 		assertFalse(acum.hayInterseccionPorFila(vacia, mat));
 		assertFalse(acum.hayInterseccionPorFila(vacia, vacia));
 	}
-	*/
 	// ejercicio 3 algunaFilaSumaMasQueLaColumna()
 	@Test
 	public void ej3_siHayFilaQueSumeMasQueNumColumna_RetornaTrue() {
@@ -156,8 +154,6 @@ public class AcumuladoresTest {
 	public void ej3_siMatrizEstaVaciaRetornaFalse() {
 		assertFalse(acum.algunaFilaSumaMasQueLaColumna(vacia, 0));
 	}
-
-	/*
 	// ejercicio 4 hayInterseccionPorColumna()
 
 	@Test
@@ -167,7 +163,6 @@ public class AcumuladoresTest {
 		assertTrue(acum.hayInterseccionPorColumna(matConInterseccionPorColumna, mat));
 
 	}
-
 	@Test
 	public void ej4_siNoHayInterseccionEnCadaColumna_RetornaFalse() {
 		assertFalse(acum.hayInterseccionPorColumna(mat, matSinInterseccionPorColumna));
@@ -186,5 +181,4 @@ public class AcumuladoresTest {
 		assertFalse(acum.hayInterseccionPorColumna(vacia, mat));
 		assertFalse(acum.hayInterseccionPorColumna(vacia, vacia));
 	}
-	 */
 }
