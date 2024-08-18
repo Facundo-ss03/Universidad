@@ -4,13 +4,10 @@ public class Acumuladores {
 	
 	public boolean todosMultiplosEnAlgunaFila(int[][] mat, int num) {
 		
-		boolean matrizVacia = mat == null || mat.length == 0;
-	    boolean numeroNoPositivo = num <= 0;
-	    boolean res = !matrizVacia && !numeroNoPositivo;
-
-		if(res == true) {
-			
-			res = false;
+	    if(matrizInvalida(mat) || num <= 0) return false;
+		
+		boolean	res = false;
+		
 		    for(int fila = 0; fila < mat.length; fila++) {
 		    	
 				boolean filaMultiplo = todaLaFilaEsMultiplo(mat[fila], num);
@@ -18,11 +15,11 @@ public class Acumuladores {
 				res = res || filaMultiplo;
 				
 			}
-		}
+		    
 		return res;
 	}
 	
-	private boolean todaLaFilaEsMultiplo(int[] fila, int num) {
+	private boolean todaLaFilaEsMultiplo(int[] fila, int num) {			//Valida si todos los elementos de una fila son múltiplos de "num".
 		
 		boolean filaMultiplo = true;
 		
@@ -34,7 +31,7 @@ public class Acumuladores {
 		return filaMultiplo;
 	}
 	
-	private boolean esMultiplo(int a, int b) {
+	private boolean esMultiplo(int a, int b) {				//Valida si el valor 'a' es múltiplo de 'b'.
 		if(a%b == 0) {
 			return true;
 		}
@@ -45,19 +42,9 @@ public class Acumuladores {
 
 	public boolean hayInterseccionPorFila(int[][] mat1, int[][] mat2) {
 		
-		boolean res = true;
+		if(matrizInvalida(mat1) || matrizInvalida(mat2) || (mat1.length != mat2.length)) return false;
 
-		if(mat1.length != mat2.length) {
-			res = false;
-		}
-		if(mat1.length == 0 || mat2.length == 0) {
-			res = false;
-		}
-		if(mat1 == null || mat2 == null) {
-			res = false;
-		}
-		
-		if(res == true) {
+		boolean res = true;
 
 			for(int fila = 0; fila < mat1.length; fila++) {
 
@@ -65,25 +52,24 @@ public class Acumuladores {
 				
 			}
 			
-		}
-		
 		return res;
 	}
 	
-	private boolean tieneIntersecciones(int[] mat1, int[] mat2) {
-		boolean hayCompartidos = false;
+	private boolean tieneIntersecciones(int[] mat1, int[] mat2) {			//Valida si hay coincidencias entre los elementos de dos arrays.
+		
+		boolean hayCoincidencia = false;
 
 			for(int col = 0; col < mat1.length; col++) {
 				
-				hayCompartidos = hayCompartidos || contiene(mat1[col], mat2);
+				hayCoincidencia = hayCoincidencia || contiene(mat1[col], mat2);
 				
 			}
 			
-		return hayCompartidos;
+		return hayCoincidencia;
 		
 	}
 	
-	private boolean contiene(int a, int[] b) {
+	private boolean contiene(int a, int[] b) {						//Valida si el array pasado por parametro contiene el valor 'a'.
 		
 		for(int valores = 0; valores < b.length; valores++) {
 			if(a == b[valores]) return true;
@@ -93,10 +79,10 @@ public class Acumuladores {
 	}
 
 	public boolean algunaFilaSumaMasQueLaColumna(int[][] mat, int nColum) {
-		boolean res = false;
 		
-		if(mat.length == 0 || nColum >= mat[0].length || nColum < 0) return false;
-
+		if(matrizInvalida(mat) || (nColum < 0) || (nColum >= mat[0].length)) return false;
+		
+		boolean res = false;
 		int sumaDeColumna = sumarColumna(mat, nColum);
 		int sumaTotal = 0;
 		
@@ -113,7 +99,7 @@ public class Acumuladores {
 		return res;
 	}
 	
-	private int sumarColumna(int[][] mat, int nColum) {
+	private int sumarColumna(int[][] mat, int nColum) {				//Suma los elementos de una columna.
 
 		int acu = 0;
 		for(int fila = 0; fila < mat.length; fila++) {
@@ -125,25 +111,9 @@ public class Acumuladores {
 	}
 
 	public boolean hayInterseccionPorColumna(int[][] mat1, int[][]mat2) {
+
+		if(matrizInvalida(mat1) || matrizInvalida(mat2) || (mat1[0].length != mat2[0].length)) return false;
 		
-		/*
-		if(mat1 == null || mat2 == null) {
-			return false;
-		}
-		if(mat1.length == 0 || mat2.length == 0) {
-			return false;
-		}
-		if(mat1[0].length != mat2[0].length) {
-			return false;
-		}
-		
-		if(mat1 == mat2) return true;
-		*/
-		
-		boolean matricesNull = mat1 == null || mat2 == null;
-		boolean matricesInvalidas = mat1.length == 0 || mat2.length == 0 || (mat1[0].length != mat2[0].length);
-		
-		if(matricesNull || matricesInvalidas) return false;
 		if(mat1 == mat2) return true;
 		
 		boolean res = true;
@@ -159,6 +129,7 @@ public class Acumuladores {
 				colInterseccion = colInterseccion || contiene(columna1[i], columna2);
 					
 			}
+			
 			res = res && colInterseccion;
 
 		}
@@ -166,7 +137,7 @@ public class Acumuladores {
 		return res;
 	}
 	
-	private int[] obtenerColumna(int col, int[][] mat) {
+	private int[] obtenerColumna(int col, int[][] mat) {			//Separa una columna de una matriz, convirtiendola en un array.
 		
 		int[] columna = new int[mat.length];
 		for(int fila = 0; fila < mat.length; fila++) {
@@ -177,4 +148,16 @@ public class Acumuladores {
 		return columna;
 	}
 	
+	private boolean matrizInvalida(int[][] mat) {						//Valida que las matrices no sean null ni estén vacías.
+
+		boolean matrizInvalida = (mat == null || mat.length == 0);		
+	    
+	    if(matrizInvalida) {
+	    	return true;
+	    }
+	    else 
+	    {
+	    	return false;
+	    }
+	}
 }
