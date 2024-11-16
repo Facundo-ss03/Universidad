@@ -1,0 +1,7 @@
+Lista de clases a trabajar:
+
+- Cliente
+- Pasajero
+- Vuelo
+- VueloNacional
+- VueloPrivado
